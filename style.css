@@ -8,4 +8,53 @@ body{
     background-color: black;
     color:white;
     font-family: 'Inter', sans-serif;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    height: 100vh;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.container_logo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+aside{
+    padding: 20px;
+    background-color: #404040;
+
+}
+
+.imagem_dashboard{
+    width: 32px;
+    height: 32px;
+    background-image: url(./imagens/bxs_dashboard.png);
+    display: inline-block;
+}
+
+.imagem_lista{
+    width: 32px;
+    height: 32px;
+    background-image: url(./imagens/lista.png);
+    display: inline-block;
+}
+.container_links ul li{
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
 }
