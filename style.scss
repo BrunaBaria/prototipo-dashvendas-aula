@@ -12,6 +12,15 @@ $cor-roxa:#27187E;
 $fonte-principal: "Inter", sans-serif;
 $fonte-negrito:700;
 $font-regular:400;
+
+%posicionamento-flexivel{
+    display: flex;
+    align-items: center;
+}
+%tamanho-container-link{
+    width: 32px;
+    height: 32px;
+}
 *{
     margin:0;
     padding: 0;
@@ -29,41 +38,37 @@ body{
 }
 
 .cabecalho{
-    display: flex;
+    @extend %posicionamento-flexivel;
     justify-content: flex-end;
-    align-items: center;
     padding: 20px;
     gap: 20px;
-}
-.container_logo{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 aside{
     padding: 20px;
     background-color: $cor-cinza; //cor de fundo cinza
 
-}
+    .container_logo{
+        @extend %posicionamento-flexivel;
+        justify-content: flex-start;
+    }
+    .container_links ul li{
+        @extend %posicionamento-flexivel;
+        gap: 10px;
 
-.imagem_dashboard{
-    width: 32px;
-    height: 32px;
-    background-image: url(./imagens/bxs_dashboard.png);
-    display: inline-block;
-}
-
-.imagem_lista{
-    width: 32px;
-    height: 32px;
-    background-image: url(./imagens/lista.png);
-    display: inline-block;
-}
-.container_links ul li{
-    display: flex;
-    align-items: center;
-    gap: 10px
+        .imagem_dashboard{
+            @extend %tamanho-container-link;
+            background-image: url(./imagens/bxs_dashboard.png);
+            display: inline-block;
+        }
+        
+        .imagem_lista{
+            @extend %tamanho-container-link;
+            background-image: url(./imagens/lista.png);
+            display: inline-block;
+        }
+    }
+    
 }
 
 a{
@@ -78,50 +83,52 @@ h2{
     font-size: 48px;
     font-weight: $fonte-negrito;
 }
- .tabela p{
-    font-size: 12px;
-    font-weight: $fonte-negrito;
-    color:$cor-cinza-claro;
-    margin:5px;
- }
 table{
     margin-top: 40px;
     width:80% ;
     font-weight:$font-regular;
     text-align: left;
     border-collapse: collapse;
+    caption{
+        text-align: left;
+        font-size: 18px;
+        font-style:normal;
+        font-weight: $fonte-negrito;
+        line-height: 23px;
+    }
 }
 .tabela{
     margin: 32px;
+    p{
+        font-size: 12px;
+        font-weight: $fonte-negrito;
+        color:$cor-cinza-claro;
+        margin:5px;
+     }
 }
-caption{
-    text-align: left;
-    font-size: 18px;
-    font-style:normal;
-    font-weight: $fonte-negrito;
-    line-height: 23px;
-}
+
 th{
     color:$cor-cinza-normal;
     font-size: 12px;
     font-style:normal;
     font-weight: $fonte-negrito;
     line-height: 23px;
+   
 }
 
 td{
     padding: 10px 0;
     border-top: 1px solid $cor-cinza-transparencia;
+    &:first-child{
+        @extend %posicionamento-flexivel;
+        gap: 10px;
+    }
 }
 
-td:first-child{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 tr:hover{
     background-color: $cor-cinza-claro;
 }
+
 
 button{
     border-radius: 999px;
@@ -139,46 +146,41 @@ button{
     background-color:$cor-cinza-mais-claro;
     border-radius: 28px;
     padding: 17px;
+    h3{
+        color: $cor-preta;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    ul{
+        display: flex;
+        justify-content: space-between;
 
-}
+        li{
+            text-align: center;
+            padding: 10px;
+            border-radius: 18px;
+            list-style-type: none;
+            width: 20%;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0,0,0.25);
 
-.informacoes h3{
-    color: $cor-preta;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.informacoes ul{
-    display: flex;
-    justify-content: space-between;
-}
-.informacoes ul li{
-    text-align: center;
-    padding: 10px;
-    border-radius: 18px;
-    list-style-type: none;
-    width: 20%;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0,0,0.25);
-}
-
-.informacoes ul li:nth-child(1){
-    background: $cor-laranja;
-} 
-.informacoes ul li:nth-child(2){
-    background-color: $cor-lilas;
+            &:nth-child(1){
+                background: $cor-laranja;
+            } 
+            &:nth-child(2){
+                background-color: $cor-lilas;
+            }  
+            &:nth-child(3){
+                background-color:$cor-roxa;
+            }  
+            p:first-of-type{
+                font-size: 32px;
+            }
+            p:last-of-type{
+                font-size:14px ;
+                font-weight: $font-regular;
+            }
+        }
     
-    
-}  
-
-.informacoes ul li:nth-child(3){
-    background-color:$cor-roxa;
-}  
-
-.informacoes ul li p:first-of-type{
-    font-size: 32px;
+    }
 }
-
-.informacoes ul li p:last-of-type{
-    font-size:14px ;
-    font-weight: $font-regular;
-}
+ 
