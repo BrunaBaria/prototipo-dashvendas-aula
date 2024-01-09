@@ -46,6 +46,7 @@ aside{
         gap: 20px;
         border-radius: 18px;
         padding:5px ;//espaçamento interno
+        margin-bottom: 21px;//espaçamento da base de dashbord e lista de pedidos
 
         &:first-of-type{ //aplicar somente no primeiro do seu tipo com parent selector &:
             background-color:variaveis.$cor-link-menu ;
@@ -70,7 +71,9 @@ a{
     font-style: normal;
     font-weight: variaveis.$font-regular;
 }
-
+section{
+    margin:46px;
+}
 h2{
     font-size: 48px;
     font-weight: variaveis.$fonte-negrito;
@@ -123,6 +126,7 @@ tr:hover{
 
 
 button{
+    margin-top: 37.5px;
     border-radius: 999px;
     background-color:variaveis.$cor-azul;
     box-shadow: 0px 5px 15px 0px rgba(27,44,97,0.15),0px 2px 4px 0px rgba(136,144,194,0.20);
@@ -144,6 +148,9 @@ button{
         
         li{
             list-style-type: none; //tira as bolinhas da lista
+            display: flex; //para alinhar as divs
+            flex-direction: column;// coloca uma coisa embaixo da outra dentro de cada elemento
+            align-items: center; //alinha verticalmente com o centro
             
         }
         li:nth-child(1){           //pegue o primeiro filho de li
@@ -171,13 +178,19 @@ button{
         display: flex;
         justify-content: space-between;
 
+        height: 70%; //cumprimento dos cards
+
         li{
             text-align: center;
             padding: 10px;
             border-radius: 18px;
             list-style-type: none;
-            width: 20%;
-            @include mixins.sombra(rgba(0, 0,0,0.25),0px ,4px ,4px );
+            width: 25%;
+            @include mixins.sombra(rgba(0, 0,0,0.25),0px ,4px ,4px);
+
+            img{
+                margin-bottom: 10px; //espaço ente o icone e o texto
+            }
 
             &:nth-child(1){
                 background: variaveis.$cor-laranja;
@@ -203,6 +216,9 @@ button{
     display:grid ; //usei o grip porque eu quero que ocupem exatamente 50% da tela cada
     grid-template-columns: 1fr 1fr;// 1fr significa 1fração da tela//50% 50%; //descrição dos meus grids em colunas
     gap: 73px; //espaço entre eles
-    margin: 32px;
+    
+    h3{
+        margin-bottom:  10px; ;//margem embaixo do texto
+    }
 
 }

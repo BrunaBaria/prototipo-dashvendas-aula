@@ -62,6 +62,7 @@ aside .container_links ul li {
   gap: 20px;
   border-radius: 18px;
   padding: 5px;
+  margin-bottom: 21px;
 }
 aside .container_links ul li:first-of-type {
   background-color: rgba(217, 217, 217, 0.5);
@@ -81,6 +82,10 @@ a {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
+}
+
+section {
+  margin: 46px;
 }
 
 h2 {
@@ -134,6 +139,7 @@ tr:hover {
 }
 
 button {
+  margin-top: 37.5px;
   border-radius: 999px;
   background-color: #0984E3;
   box-shadow: 0px 5px 15px 0px rgba(27, 44, 97, 0.15), 0px 2px 4px 0px rgba(136, 144, 194, 0.2);
@@ -154,6 +160,9 @@ button {
 }
 .grafico ul li {
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .grafico ul li:nth-child(1) div {
   width: 50px;
@@ -177,14 +186,18 @@ button {
 .informacoes ul {
   display: flex;
   justify-content: space-between;
+  height: 70%;
 }
 .informacoes ul li {
   text-align: center;
   padding: 10px;
   border-radius: 18px;
   list-style-type: none;
-  width: 20%;
+  width: 25%;
   box-shadow: rgba(0, 0, 0, 0.25), 0px, 4px, 4px;
+}
+.informacoes ul li img {
+  margin-bottom: 10px;
 }
 .informacoes ul li:nth-child(1) {
   background: #FF8600;
@@ -207,7 +220,9 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 73px;
-  margin: 32px;
+}
+.numeros h3 {
+  margin-bottom: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
