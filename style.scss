@@ -1,26 +1,6 @@
-$cor-preta: #000;
-$cor-branca:white;
-$cor-cinza:#404040;
-$cor-cinza-claro:#959595;
-$cor-cinza-normal:#828282;
-$cor-cinza-transparencia:rgba(108, 117, 125, 0.50);
-$cor-cinza-mais-claro:#D9D9D9;
-$cor-azul:#0984E3;
-$cor-laranja:#FF8600;
-$cor-lilas:#758BFD;
-$cor-roxa:#27187E;
-$fonte-principal: "Inter", sans-serif;
-$fonte-negrito:700;
-$font-regular:400;
-
-%posicionamento-flexivel{
-    display: flex;
-    align-items: center;
-}
-%tamanho-container-link{
-    width: 32px;
-    height: 32px;
-}
+@use "variaveis";
+@use "placeholders";
+@use "mixins";
 *{
     margin:0;
     padding: 0;
@@ -28,10 +8,10 @@ $font-regular:400;
 }
 
 body{
-    background-color: $cor-preta;
-    color:$cor-branca;
-    font-family: $fonte-principal;
-    font-weight: $fonte-negrito;
+    background-color: variaveis.$cor-preta;
+    color:variaveis.$cor-branca;
+    font-family: variaveis.$fonte-principal;
+    font-weight: variaveis.$fonte-negrito;
     display: grid;
     grid-template-columns: 20% 80%;
     height: 100vh;
@@ -46,26 +26,38 @@ body{
 
 aside{
     padding: 20px;
-    background-color: $cor-cinza; //cor de fundo cinza
-
+    background-color: variaveis.$cor-cinza; //cor de fundo cinza
+    display:flex ;//alianhar o texto verticalmente entre si e centralizar os itens
+    flex-direction: column; //tira o alinhamanto na horizontal do flexbox e coloca na vertical(coluna)
+    align-items: center;
+    gap: 89px;//espaçamento dos itens a partir do logo
+    h1{
+        font-family: 'Orelega One', cursive;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
     .container_logo{
         @extend %posicionamento-flexivel;
         justify-content: flex-start;
     }
     .container_links ul li{
         @extend %posicionamento-flexivel;
-        gap: 10px;
+        gap: 20px;
+        border-radius: 18px;
+        padding:5px ;//espaçamento interno
+
+        &:first-of-type{ //aplicar somente no primeiro do seu tipo com parent selector &:
+            background-color:variaveis.$cor-link-menu ;
+        }
 
         .imagem_dashboard{
-            @extend %tamanho-container-link;
-            background-image: url(./imagens/bxs_dashboard.png);
-            display: inline-block;
+            @include mixins.mostra-icone('./imagens/bxs_dashboard.png')
         }
         
         .imagem_lista{
-            @extend %tamanho-container-link;
-            background-image: url(./imagens/lista.png);
-            display: inline-block;
+            @include mixins.mostra-icone('./imagens/lista.png');
+           
         }
     }
     
@@ -73,27 +65,27 @@ aside{
 
 a{
     text-decoration: none;
-    color:$cor-branca;
+    color:variaveis.$cor-branca;
     font-size: 16px;
     font-style: normal;
-    font-weight: $font-regular;
+    font-weight: variaveis.$font-regular;
 }
 
 h2{
     font-size: 48px;
-    font-weight: $fonte-negrito;
+    font-weight: variaveis.$fonte-negrito;
 }
 table{
     margin-top: 40px;
     width:80% ;
-    font-weight:$font-regular;
+    font-weight:variaveis.$font-regular;
     text-align: left;
     border-collapse: collapse;
     caption{
         text-align: left;
         font-size: 18px;
         font-style:normal;
-        font-weight: $fonte-negrito;
+        font-weight: variaveis.$fonte-negrito;
         line-height: 23px;
     }
 }
@@ -101,24 +93,24 @@ table{
     margin: 32px;
     p{
         font-size: 12px;
-        font-weight: $fonte-negrito;
-        color:$cor-cinza-claro;
+        font-weight: variaveis.$fonte-negrito;
+        color:variaveis.$cor-cinza-claro;
         margin:5px;
      }
 }
 
 th{
-    color:$cor-cinza-normal;
+    color:variaveis.$cor-cinza-normal;
     font-size: 12px;
     font-style:normal;
-    font-weight: $fonte-negrito;
+    font-weight: variaveis.$fonte-negrito;
     line-height: 23px;
    
 }
 
 td{
     padding: 10px 0;
-    border-top: 1px solid $cor-cinza-transparencia;
+    border-top: 1px solid variaveis.$cor-cinza-transparencia;
     &:first-child{
         @extend %posicionamento-flexivel;
         gap: 10px;
@@ -126,31 +118,55 @@ td{
 }
 
 tr:hover{
-    background-color: $cor-cinza-claro;
+    background-color: variaveis.$cor-cinza-claro;
 }
 
 
 button{
     border-radius: 999px;
-    background-color:$cor-azul;
+    background-color:variaveis.$cor-azul;
     box-shadow: 0px 5px 15px 0px rgba(27,44,97,0.15),0px 2px 4px 0px rgba(136,144,194,0.20);
     padding: 10px 20px;
     border: none;
-    color:$cor-branca;
+    color:variaveis.$cor-branca;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
 }
+.grafico{
+    @extend %container-informacoes;
+    ul{
+        display: flex; //itens lado a lado
+        justify-content: space-around; //alinhamento com espaços  iguais entre eles justificado
+        color:variaveis.$cor-preta ;
+        font-weight:variaveis.$font-regular ;//grossura da fonte
+        align-items: flex-end; //alinha itens no base
+        
+        li{
+            list-style-type: none; //tira as bolinhas da lista
+            
+        }
+        li:nth-child(1){           //pegue o primeiro filho de li
+            div{                   //vamos pegar a div desse child
+               @include mixins.criar-barra(90px,variaveis.$cor-laranja);
+            }
+        }
+        li:nth-child(2){
+            div{                   //vamos pegar a div desse child
+                @include mixins.criar-barra(119px,variaveis.$cor-lilas);
+            }
+        }
+        li:nth-child(3){
+            div{                   //vamos pegar a div desse child
+                @include mixins.criar-barra(90px,variaveis.$cor-roxa);
+        }
+
+    }
+    }
+} 
 
 .informacoes{
-    background-color:$cor-cinza-mais-claro;
-    border-radius: 28px;
-    padding: 17px;
-    h3{
-        color: $cor-preta;
-        font-size: 24px;
-        font-weight: 600;
-    }
+    @extend %container-informacoes;
     ul{
         display: flex;
         justify-content: space-between;
@@ -161,26 +177,32 @@ button{
             border-radius: 18px;
             list-style-type: none;
             width: 20%;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0,0,0.25);
+            @include mixins.sombra(rgba(0, 0,0,0.25),0px ,4px ,4px );
 
             &:nth-child(1){
-                background: $cor-laranja;
+                background: variaveis.$cor-laranja;
             } 
             &:nth-child(2){
-                background-color: $cor-lilas;
+                background-color: variaveis.$cor-lilas;
             }  
             &:nth-child(3){
-                background-color:$cor-roxa;
+                background-color:variaveis.$cor-roxa;
             }  
             p:first-of-type{
                 font-size: 32px;
             }
             p:last-of-type{
                 font-size:14px ;
-                font-weight: $font-regular;
+                font-weight: variaveis.$font-regular;
             }
         }
     
     }
 }
- 
+ .numeros {
+    display:grid ; //usei o grip porque eu quero que ocupem exatamente 50% da tela cada
+    grid-template-columns: 1fr 1fr;// 1fr significa 1fração da tela//50% 50%; //descrição dos meus grids em colunas
+    gap: 73px; //espaço entre eles
+    margin: 32px;
+
+}

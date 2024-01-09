@@ -1,0 +1,20 @@
+@use "variaveis";
+%posicionamento-flexivel{
+    display: flex;
+    align-items: center;
+}
+%tamanho-container-link{
+    width: 32px;
+    height: 32px;
+}
+
+%container-informacoes{
+    background-color:variaveis.$cor-cinza-mais-claro;
+    border-radius: 28px;
+    padding: 17px;
+    h3{
+        color: variaveis.$cor-preta;
+        font-size: 24px;
+        font-weight: 600;
+    }
+}
